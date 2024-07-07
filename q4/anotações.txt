@@ -1,0 +1,10 @@
+Menu de opções para o usuário
+
+1)  Cadastrar Livro 
+2)  Consultar Livro 
+    a. Consultar Todos  
+    b. Consultar por Id 
+    c. Consultar por Autor 
+    d. Retornar ao menu 
+3)  Remover Livro 
+4)  Encerrar Programa 

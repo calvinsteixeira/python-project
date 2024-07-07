@@ -1,0 +1,128 @@
+Enunciado: Você foi contratado para desenvolver um sistema de cobrança de serviços de uma copiadora. Você ficou com a parte de desenvolver a interface com o funcionário.
+A copiadora opera da seguinte maneira:
+
+
+
+
+Serviço de Digitalização (DIG) o custo por página é de um real e dez centavos;
+Serviço de Impressão Colorida (ICO) o custo por página é de um real;
+Serviço de Impressão Preto e Branco (IPB) o custo por página é de quarenta centavos;
+Serviço de Fotocópia (FOT) o custo por página é de vinte centavos;
+
+
+
+
+
+Se número de páginas for menor que 20 retornar o número de página sem desconto;
+Se número de páginas for igual ou maior que 20 e menor que 200 retornar o número de páginas com o desconto é de 15%;
+Se número de páginas for igual ou maior que 200 e menor que 2000 retornar o número de páginas com o desconto é de 20%;
+Se número de páginas for igual ou maior que 2000 e menor que 20000 retornar o número de páginas com o desconto é de 25%;
+Se número de páginas for maior ou igual à 20000 não é aceito pedidos nessa quantidade de páginas;
+♦ Para o adicional de encadernação simples (1) é cobrado um valor extra de 15 reais;
+♦ Para o adicional de encadernação de capa dura (2) é cobrado um valor extra de 40 reais;
+♦ Para o adicional de não querer mais nada (0) é cobrado um valor extra de 0 reais;
+O valor final da conta é calculado da seguinte maneira:
+total = (servico * num_pagina) + extra
+Elabore um programa em Python que:
+A. Deve-se implementar o print com uma mensagem de boas-vindas que apareça o seu nome [EXIGÊNCIA DE CÓDIGO 1 de 7];
+B. Deve-se implementar a função escolha_servico() em que: [EXIGÊNCIA DE CÓDIGO 2 de 7];
+a. Pergunta o servico desejado;
+b. Retorna o valor servico com base na escolha do usuário;
+c. Repete a pergunta do item B.a se digitar uma opção diferente de: dig/ico/ipb/fot;
+C. Deve-se implementar a função num_pagina() em que: [EXIGÊNCIA DE CÓDIGO 3 de 7];
+a. Pergunta o número de páginas;
+b. Retorna o número de páginas com desconto seguindo a regra do enunciado (desconto calculado em cima do número de páginas);
+c. Repete a pergunta do item C.a se digitar um valor acima de 20000 ou valor não numérico (use try/except para não numérico)
+D. Deve-se implementar a função servico_extra() em que: [EXIGÊNCIA DE CÓDIGO 4 de 7];
+a. Pergunta pelo serviço adicional;
+b. Retornar o valor de apenas uma das opções de adicional
+c. Repetir a pergunta item D.a se digitar uma opção diferente de: 1/2/0;
+E. Deve-se implementar o total a pagar no código principal (main), ou seja, não pode estar dentro de função, conforme o enunciado [EXIGÊNCIA DE CÓDIGO 5 de 7];
+F. Deve-se implementar try/except [EXIGÊNCIA DE CÓDIGO 6 de 7];
+G. Deve-se inserir comentários relevantes no código [EXIGÊNCIA DE CÓDIGO 7 de 7];
+H. Deve-se apresentar na saída de console uma mensagem de boas-vindas com o seu nome [EXIGÊNCIA DE SAÍDA DE CONSOLE 1 de 4];
+I. Deve-se apresentar na saída de console um pedido no qual o usuário errou a opção de serviço [EXIGÊNCIA DE SAÍDA DE CONSOLE 2 de 4];
+J. Deve-se apresentar na saída de console um pedido no qual o usuário digitou ultrapassou no número de páginas [EXIGÊNCIA DE SAÍDA DE CONSOLE 3 de 4];
+K. Deve-se apresentar na saída de console um pedido com opção de serviço, número de páginas e serviço extra válidos [EXIGÊNCIA DE SAÍDA DE CONSOLE 4 de 4];
+EXEMPLO DE SAÍDA DE CONSOLE:
+Figura 3: Exemplo de saída de console que o aluno deve fazer. Em que se pergunta pelo tipo de serviço e se erra opção inicialmente, que se passa do número de páginas aceito. Na sequência, o
+usuário digitou um valor de serviço, número de páginas e extras válidos.
+
+Apresentação de Código da Questão 3:
+SUBSTITUIR ESSE TEXTO QUE ESTÁ EM VERMELHO PELO SEU CÓDIGO DO EXERCÍCIO 3.
+NÃO ESQUECER DE CUMPRIR AS EXIGÊNCIAS DE CÓDIGO!!
+O CÓDIGO DEVE ESTAR IDENTADO!!
+SERÃO ACEITOS SOMENTE CÓDIGOS NO FORMATO TEXTO (NADA DE IMAGEM NEM PRINT, ZERA A QUESTÃO!).
+
+Apresentação de Saída do Console da Questão 3:
+SUBSTITUIR ESSE TEXTO QUE ESTÁ EM LARANJA PELA A SAÍDA DO CONSOLE DO EXERCÍCIO 3
+NÃO ESQUECER DE CUMPRIR AS EXIGÊNCIAS
+SERÁ ACEITO SOMETE SAÍDAS DO CONSOLE NO FORMATO IMAGEM (NADA DE TEXTO AQUI! ZERA ESSA PARTE DA QUESTÃO!)
+QUESTÃO 4 de 4 - Conteúdo até aula 06
+Enunciado: Você e sua equipe de programadores foram contratados por pequena empresa para desenvolver o software de gerenciamento de livros. Este software deve ter o
+seguinte menu e opções:
+1) Cadastrar Livro
+2) Consultar Livro
+1. Consultar Todos
+2. Consultar por Id
+3. Consultar por Autor
+4. Retornar ao menu
+3) Remover Livro
+4) Encerrar Programa
+Elabore um programa em Python que:
+A. Deve-se implementar o print com uma mensagem de boas-vindas que apareça o seu nome [EXIGÊNCIA DE CÓDIGO 1 de 8];
+B. Deve-se implementar uma lista vazia com o nome de lista_livro e a variável id_global com valor inicial igual a 0 [EXIGÊNCIA DE CÓDIGO 2 de 8];
+C. Deve-se implementar uma função chamada cadastrar_livro(id) em que: [EXIGÊNCIA DE CÓDIGO 3 de 8];
+a. Pergunta nome, autor, editora do livro;
+b. Armazena o id (este é fornecido via parâmetro da função), nome, autor, editora dentro de um dicionário;
+c. Copiar o dicionário para dentro da lista_livro;
+D. Deve-se implementar uma função chamada consultar_livro() em que: [EXIGÊNCIA DE CÓDIGO 4 de 8];
+a. Deve-se perguntar qual opção deseja (1. Consultar Todos / 2. Consultar por Id / 3. Consultar por Autor / 4. Retornar ao menu):
+i. Se Consultar Todos, apresentar todos os livros com todos os seus dados cadastrados;
+ii. Se Consultar por Id, apresentar o livro específico com todos os seus dados cadastrados;
+iii. Se Consultar por Autor, apresentar o(s) livro(s) do autor com todos os seus dados cadastrados;
+iv. Se Retornar ao menu, deve-se retornar ao menu principal;
+v. Se Entrar com um valor diferente de 1, 2, 3 ou 4, printar “Opção inválida" e repetir a pergunta D.a.
+vi. Enquanto o usuário não escolher a opção 4, o menu consultar livros deve se repetir.
+E. Deve-se implementar uma função chamada remover_livro() em que: [EXIGÊNCIA DE CÓDIGO 5 de 8];
+a. Deve-se pergunta pelo id do livro a ser removido;
+b. Remover o livro da lista_livro;
+c. Se o id fornecido não for de um livro da lista, printar “Id inválido” e repetir a pergunta E.a.
+F. Deve-se implementar uma estrutura de menu no código principal (main), ou seja, não pode estar dentro de função, em que: [EXIGÊNCIA DE CÓDIGO 6 de 8];
+a. Deve-se pergunta qual opção deseja (1. Cadastrar Livro / 2. Consultar Livro / 3. Remover Livro / 4. Encerrar Programa):
+i. Se Cadastrar Livro, acrescentar em um id_ global e chamar a função cadastrar_livro(id_ global);
+ii. Se Consultar Livro, chamar função consultar_livro();
+iii. Se Remover Livro, chamar função remover_livro();
+iv. Se Encerrar Programa, sair do menu (e com isso acabar a execução do código);
+v. Se Entrar com um valor diferente de 1, 2, 3 ou 4, printar “Opção inválida" e repetir a pergunta F.a.
+vi. Enquanto o usuário não escolher a opção 4, o menu deve se repetir.
+G. Deve-se implementar uma lista de dicionários (uma lista contento dicionários dentro) [EXIGÊNCIA DE CÓDIGO 7 de 8];
+H. Deve-se inserir comentários relevantes no código [EXIGÊNCIA DE CÓDIGO 8 de 8];
+I. Deve-se apresentar na saída de console uma mensagem de boas-vindas com o seu nome [EXIGÊNCIA DE SAÍDA DE CONSOLE 1 de 6];
+J. Deve-se apresentar na saída de console um cadastro de 3 livros (sendo 2 deles no mesmo autor) [EXIGÊNCIA DE SAÍDA DE CONSOLE 2 de 6];
+K. Deve-se apresentar na saída de console uma consulta de todos os livros [EXIGÊNCIA DE SAÍDA DE CONSOLE 3 de 6];
+L. Deve-se apresentar na saída de console uma consulta por código (id) de um dos livros [EXIGÊNCIA DE SAÍDA DE CONSOLE 4 de 6];
+M. Deve-se apresentar na saída de console uma consulta por autor em que 2 livros sejam do mesmo autor [EXIGÊNCIA DE SAÍDA DE CONSOLE 5 de 6];
+N. Deve-se apresentar na saída de console uma remoção de um dos livros seguida de uma consulta de todos os livros [EXIGÊNCIA DE SAÍDA DE CONSOLE 6 de 6];
+EXEMPLO DE SAÍDA DE CONSOLE:
+Figura 4.1: Exemplo de saída de console que o aluno deve fazer. É realizado o cadastro de 1 livro.
+
+Figura 4.2: Exemplo de saída de console que o aluno deve fazer. São cadastrados mais dois livros com mesmo autor.
+
+Figura 4.3: Exemplo de saída de console que o aluno deve fazer. Em que se consulta Todos os livros cadastrados.
+
+Figura 4.4: Exemplo de saída de console que o aluno deve fazer. Em que se consulta o livro de id número 2 e se faz uma consulta pelo nome do autor (MANZANO).
+
+Figura 4.5: Exemplo de saída de console que o aluno deve fazer. Em que se remove o livro de Id número 2 e depois se faz uma consulta geral.
+
+Apresentação de Código da Questão 4:
+SUBSTITUIR ESSE TEXTO QUE ESTÁ EM VERMELHO PELO SEU CÓDIGO DO EXERCÍCIO 4.
+NÃO ESQUECER DE CUMPRIR AS EXIGÊNCIAS DE CÓDIGO!!
+O CÓDIGO DEVE ESTAR IDENTADO!!
+SERÃO ACEITOS SOMENTE CÓDIGOS NO FORMATO TEXTO (NADA DE IMAGEM NEM PRINT, ZERA A QUESTÃO!).
+
+Apresentação de Saída do Console da Questão 4:
+SUBSTITUIR ESSE TEXTO QUE ESTÁ EM LARANJA PELA A SAÍDA DO CONSOLE DO EXERCÍCIO 4
+NÃO ESQUECER DE CUMPRIR AS EXIGÊNCIAS
+SERÁ ACEITO SOMETE SAÍDAS DO CONSOLE NO FORMATO IMAGEM (NADA DE TEXTO AQUI! ZERA ESSA PARTE DA QUESTÃO!)
+

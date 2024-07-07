@@ -1,0 +1,18 @@
+LEGENDA PARA TASKS -> LEGENDAS: Concluído - [✅] Não concluído - [❌] - Desenvolvimento - [⏳]
+
+[✅] - Exigência de código [1 de 8]
+    Deve-se implementar o print com uma mensagem de boas-vindas que apareça o seu nome
+[✅] - Exigência de código [2 de 8]
+    Deve-se implementar o input do sabor (CP/AC) e o print “Sabor inválido. Tente novamente" se o usuário entra com valor diferente de CP e AC
+[✅] - Exigência de código [3 de 8]
+    Deve-se implementar o input do tamanho (P/M/G) e o print “Tamanho inválido. Tente novamente" se o usuário com entra valor diferente de P, M ou G
+[✅] - Exigência de código [4 de 8]
+    Deve-se implementar if, elif e/ou else com cada uma das combinações de sabor e tamanho
+[✅] - Exigência de código [5 de 8]
+    Deve-se implementar um acumulador para somar os valores dos pedidos
+[✅] - Exigência de código [6 de 8]
+    Deve-se implementar o input com a pergunta: “Deseja pedir mais alguma coisa?”. Se sim repetir a partir do item B, senão encerrar o programa executar o print do
+[✅] - Exigência de código [7 de 8]
+    Deve-se implementar as estruturas de while, break, continue
+[✅] - Exigência de código [8 de 8]
+    Deve-se inserir comentários relevantes no código
