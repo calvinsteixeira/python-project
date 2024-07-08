@@ -27,7 +27,6 @@ def cadastrarLivro(novoId):
 
 
 def consultarLivros():
-
     while True:
         print('''
 -----------------
@@ -48,7 +47,7 @@ MENU DE CONSULTAS
 ------------------
 LISTAGEM DE LIVROS
 ------------------
-'''                 
+'''
                     if len(listaLivros) > 0:
                         for livro in listaLivros:
                             listagemLivros += f'''
@@ -57,10 +56,10 @@ Id: {livro["id"]}
 Nome: {livro["nome"]}
 Autor: {livro["autor"]}
 Editora: {livro["editora"]}
------------    
+-----------
 '''
                     else:
-                        listagemLivros += '\nNenhum livro encontrado\n'         
+                        listagemLivros += '\nNenhum livro encontrado\n'
                     print(listagemLivros)
                     continue
                 # elif acaoUsuario == 2:

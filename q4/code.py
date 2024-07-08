@@ -6,106 +6,6 @@ print("\nSeja bem vindo, Calvin Teixeira\n")
 listaLivros = []
 idGlobal = 0
 
-
-def initMenu():
-    print('''
-\n   
---------------
-Menu de opções
---------------
-    
-1 - Cadastrar Livro
-2 - Consultar Livro
-3 - Remover Livro
-4 - Encerrar programa
-    \n
-    ''')
-
-    while True:
-        try:
-            acaoUsuario = int(
-                input('\nQual opção você deseja? (1, 2, 3 ou 4)\n'))
-            if acaoUsuario in [1, 2, 3, 4]:
-                if acaoUsuario == 1:
-                    novoId = listaLivrosAutoIncrementId()
-                    cadastrarLivro(novoId)
-                    break
-                elif acaoUsuario == 2:
-                    menuConsultas()
-                    break
-                elif acaoUsuario == 3:
-                    while True:
-                        idInformado = int(
-                            input('\nInforme o id do livro que deseja remover\n'))
-                        result = removerLivroById(idInformado)
-                        if result["error"]:
-                            print(result["message"])
-                            print('''
-\n   
---------------
-Menu de opções
---------------
-    
-1 - Remover outro livro
-2 - Retornar ao menu principal
-\n
-    ''')
-                            while True:
-                                try:
-                                    acaoUsuario = int(
-                                        input('\nQual opção você deseja? (1, 2)\n'))
-                                    if acaoUsuario in [1, 2]:
-                                        if acaoUsuario == 1:
-                                            break
-                                        else:
-                                            limparConsole()
-                                            initMenu()
-                                            break
-                                    else:
-                                        print('\nOpção inválida\n')
-                                except ValueError:
-                                    print(
-                                        'Por favor, informe um valor númerico válido para a opção')
-                        else:
-                            print(result["message"])
-                            print('''
-\n   
---------------
-Menu de opções
---------------
-    
-1 - Remover outro livro
-2 - Retornar ao menu principal
-\n
-    ''')
-                            while True:
-                                try:
-                                    acaoUsuario = int(
-                                        input('\nQual opção você deseja? (1, 2)\n'))
-                                    if acaoUsuario in [1, 2]:
-                                        if acaoUsuario == 1:
-                                            break
-                                        else:
-                                            limparConsole()
-                                            initMenu()
-                                            break
-                                    else:
-                                        print('\nOpção inválida\n')
-                                except ValueError:
-                                    print(
-                                        'Por favor, informe um valor númerico válido para a opção')
-                            break
-                elif acaoUsuario == 4:
-                    print('Encerrando aplicação...')
-                    timer.start()
-                    timer.join()
-                    encerrarApp()
-            else:
-                print('\nPor favor, escolha uma opção disponível\n')
-        except ValueError:
-            print('Por favor, informe um valor númerico válido para a opção')
-
-
 def cadastrarLivro(novoId):
     nomeLivro = input('\nInforme o nome do livro: ')
     autorLivro = input('\nInforme o autor do livro: ')
@@ -139,8 +39,7 @@ Escolha como deseja continuar
                     cadastrarLivro(novoId)
                     break
                 elif acaoUsuario == 2:
-                    limparConsole()
-                    initMenu()
+                    limparConsole()                    
                     break
             else:
                 print('\nPor favor, escolha uma opção disponível\n')
@@ -150,7 +49,6 @@ Escolha como deseja continuar
     if acaoUsuario == 1:
         cadastrarLivro(listaLivrosAutoIncrementId)
 
-    initMenu()
 
 
 def menuConsultas():
@@ -284,5 +182,99 @@ def limparConsole():
 def listaLivrosAutoIncrementId():
     return len(listaLivros) + 1
 
+print('''
+\n   
+--------------
+Menu de opções
+--------------
+    
+1 - Cadastrar Livro
+2 - Consultar Livro
+3 - Remover Livro
+4 - Encerrar programa
+    \n
+    ''')
 
-initMenu()
+while True:
+        try:
+            acaoUsuario = int(
+                input('\nQual opção você deseja? (1, 2, 3 ou 4)\n'))
+            if acaoUsuario in [1, 2, 3, 4]:
+                if acaoUsuario == 1:
+                    novoId = listaLivrosAutoIncrementId()
+                    cadastrarLivro(novoId)
+                    break
+                elif acaoUsuario == 2:
+                    menuConsultas()
+                    break
+                elif acaoUsuario == 3:
+                    while True:
+                        idInformado = int(
+                            input('\nInforme o id do livro que deseja remover\n'))
+                        result = removerLivroById(idInformado)
+                        if result["error"]:
+                            print(result["message"])
+                            print('''
+\n   
+--------------
+Menu de opções
+--------------
+    
+1 - Remover outro livro
+2 - Retornar ao menu principal
+\n
+    ''')
+                            while True:
+                                try:
+                                    acaoUsuario = int(
+                                        input('\nQual opção você deseja? (1, 2)\n'))
+                                    if acaoUsuario in [1, 2]:
+                                        if acaoUsuario == 1:
+                                            break
+                                        else:
+                                            limparConsole()
+                                            initMenu()
+                                            break
+                                    else:
+                                        print('\nOpção inválida\n')
+                                except ValueError:
+                                    print(
+                                        'Por favor, informe um valor númerico válido para a opção')
+                        else:
+                            print(result["message"])
+                            print('''
+\n   
+--------------
+Menu de opções
+--------------
+    
+1 - Remover outro livro
+2 - Retornar ao menu principal
+\n
+    ''')
+                            while True:
+                                try:
+                                    acaoUsuario = int(
+                                        input('\nQual opção você deseja? (1, 2)\n'))
+                                    if acaoUsuario in [1, 2]:
+                                        if acaoUsuario == 1:
+                                            break
+                                        else:
+                                            limparConsole()
+                                            initMenu()
+                                            break
+                                    else:
+                                        print('\nOpção inválida\n')
+                                except ValueError:
+                                    print(
+                                        'Por favor, informe um valor númerico válido para a opção')
+                            break
+                elif acaoUsuario == 4:
+                    print('Encerrando aplicação...')
+                    timer.start()
+                    timer.join()
+                    encerrarApp()
+            else:
+                print('\nPor favor, escolha uma opção disponível\n')
+        except ValueError:
+            print('Por favor, informe um valor númerico válido para a opção')
