@@ -1,280 +1,103 @@
-import threading
 import os
 
 print("\nSeja bem vindo, Calvin Teixeira\n")
 
-listaLivros = []
-idGlobal = 0
+lista_livro = []
+id_global = 0
 
-def cadastrarLivro(novoId):
-    nomeLivro = input('\nInforme o nome do livro: ')
-    autorLivro = input('\nInforme o autor do livro: ')
-    editoraLivro = input('\nInforme a editora do livro: ')
 
-    dadosNovoLivro = {
-        "id": novoId,
-        "nome": nomeLivro,
-        "autor": autorLivro,
-        "editora": editoraLivro
-    }
-
-    listaLivros.append(dadosNovoLivro)
-
+def cadastrar_livro(id):
+    nome = input("\nDigite o nome do livro: ")
+    autor = input("Digite o autor do livro: ")
+    editora = input("Digite a editora do livro: ")
+    livro = {"id": id, "nome": nome, "autor": autor, "editora": editora}
+    lista_livro.append(livro)
     print('\nLivro cadastrado com sucesso!\n')
 
+def consultar_livro():
     while True:
-        try:
-            acaoUsuario = int(input('''
-------------------------------
-Escolha como deseja continuar
-------------------------------
-
-1 - Cadastrar novo livro
-2 - Retornar ao menu principal
-'''))
-
-            if acaoUsuario in [1, 2]:
-                if acaoUsuario == 1:
-                    novoId = listaLivrosAutoIncrementId()
-                    cadastrarLivro(novoId)
-                    break
-                elif acaoUsuario == 2:
-                    limparConsole()                    
-                    break
+        print("\n1. Consultar Todos \n2. Consultar por Id \n3. Consultar por Autor \n4. Retornar ao menu:\n")
+        opcao = input("\nDigite a opção desejada: ")
+        if opcao == '1':
+            if len(lista_livro) == 0:
+                print('\nNenhum livro para listar, tente outra opção')
+            for livro in lista_livro:
+                print(f'''
+---------------------------------
+ID: {livro['id']}
+NOME: {livro['nome']}
+AUTOR: {livro['autor']}
+EDITORA: {livro['editora']}
+---------------------------------
+''')
+        elif opcao == '2':
+            id_consulta = int(input("Digite o id do livro: "))
+            livro_encontrado = next(
+                (livro for livro in lista_livro if livro['id'] == id_consulta), None)
+            if livro_encontrado:
+                print(f'''
+---------------------------------
+ID: {livro_encontrado['id']}
+NOME: {livro_encontrado['nome']}
+AUTOR: {livro_encontrado['autor']}
+EDITORA: {livro_encontrado['editora']}
+---------------------------------
+''')
             else:
-                print('\nPor favor, escolha uma opção disponível\n')
-        except ValueError:
-            print('Por favor, informe um valor númerico válido para a opção')
+                print("Livro não encontrado.")
+        elif opcao == '3':
+            autor_consulta = input("Digite o autor do livro: ")
+            livros_autor = [
+                livro for livro in lista_livro if livro['autor'] == autor_consulta]
+            for livro in livros_autor:
+                print(f'''
+---------------------------------
+ID: {livro['id']}
+NOME: {livro['nome']}
+AUTOR: {livro['autor']}
+EDITORA: {livro['editora']}
+---------------------------------
+''')
+        elif opcao == '4':
+            limpa_console()
+            break
+        else:
+            limpa_console()
+            print("\nOpção inválida, tente novamente\n\n")
 
-    if acaoUsuario == 1:
-        cadastrarLivro(listaLivrosAutoIncrementId)
-
-
-
-def menuConsultas():
+def remover_livro():
     while True:
-        try:
-            print('''
-    \n
----------------------------------
-Que tipo de consulta você deseja?
----------------------------------
+        id_remover = int(input("\nDigite o id do livro a ser removido: "))
+        livro_encontrado = next(
+            (livro for livro in lista_livro if livro['id'] == id_remover), None)
+        if livro_encontrado:
+            lista_livro.remove(livro_encontrado)
+            limpa_console()
+            print("\nLivro removido com sucesso.")
+            break
+        else:
+            print("\nId inválido, tente novamente")
 
-Escolha a opção que desejar
-1 - Consultar todos
-2 - Consultar por Id
-3 - Constultar por autor
-4 - Retornar ao menu
-    \n
-    ''')
-            acaoUsuario = int(
-                input('\nQual opção você deseja? (1, 2, 3 ou 4)\n'))
-
-            if acaoUsuario in [1, 2, 3, 4]:
-                if acaoUsuario == 1:
-                    print(getAllLivros())
-                elif acaoUsuario == 2:
-                    idInformado = input('\nInforme o id que deseja buscar\n')
-                    print(getLivroById(idInformado))
-                elif acaoUsuario == 3:
-                    autorInformado = input(
-                        '\nInforme o nome do autor que deseja buscar\n')
-                    print(getLivroByAutor(autorInformado))
-                elif acaoUsuario == 4:
-                    limparConsole()
-                    initMenu()
-            else:
-                print('\nPor favor, escolha uma opção disponível\n')
-        except ValueError:
-            print('Por favor, informe um valor númerico válido para a opção')
-
-
-def getAllLivros():
-    textoLivros = '''
----------------------------
-Lista de livros cadastrados
----------------------------
-    '''
-
-    for livro in listaLivros:
-        textoLivros += f'''
------------
-Id: {livro["id"]}
-Nome: {livro["nome"]}
-Autor: {livro["autor"]}
-Editora: {livro["editora"]}
------------
-'''
-    return textoLivros
-
-
-def getLivroById(idInformado):
-    livro = next(
-        (livro for livro in listaLivros if livro["id"] == idInformado), None)
-
-    if livro:
-        return f'''
------------
-Id: {livro["id"]}
-Nome: {livro["nome"]}
-Autor: {livro["autor"]}
-Editora: {livro["editora"]}
------------
-'''
-    else:
-        return '\nNenhum livro encontrado\n'
-
-
-def getLivroByAutor(autorInformado):
-    nomeAutor = autorInformado.lower()
-    livrosEncontrados = [
-        livro for livro in listaLivros if nomeAutor in livro["autor"].lower()]
-    textoLivros = ''''''
-
-    if len(livrosEncontrados) > 0:
-        for livro in livrosEncontrados:
-            textoLivros += f'''
------------
-Id: {livro["id"]}
-Nome: {livro["nome"]}
-Autor: {livro["autor"]}
-Editora: {livro["editora"]}
------------
-            '''
-    else:
-        return '\nNenhum livro encontrado\n'
-
-
-def removerLivroById(idInformado):
-    livro = next(
-        (livro for livro in listaLivros if livro["id"] == idInformado), None)
-
-    if livro:
-        list(filter(lambda livro: livro["id"] != idInformado, listaLivros))
-        return {
-            "error": False,
-            "message":  '\nLivro removido com sucesso\n'
-        }
-    else:
-        return {
-            "error": True,
-            "message": '\nId inválido\n'
-        }
-
-
-def encerrarApp():
-    print('Obrigado por usar nossa plataforma!')
-    limparConsole()
-    exit()
-
-
-# Configura a função que fecha o app para ter um time out de execução, isso melhora a experiência do usuário, para que ao selecionar a opção e encerrar o sistema, isso não aconteça de forma imediata.
-timer = threading.Timer(2, encerrarApp)
-
-
-def limparConsole():
-    if os.name == 'nt':
+def limpa_console():
+    if os.name == 'nt':  # Windows
         os.system('cls')
-    else:
+    else:  # Unix (Linux, macOS)
         os.system('clear')
 
-
-def listaLivrosAutoIncrementId():
-    return len(listaLivros) + 1
-
-print('''
-\n   
---------------
-Menu de opções
---------------
-    
-1 - Cadastrar Livro
-2 - Consultar Livro
-3 - Remover Livro
-4 - Encerrar programa
-    \n
-    ''')
-
 while True:
-        try:
-            acaoUsuario = int(
-                input('\nQual opção você deseja? (1, 2, 3 ou 4)\n'))
-            if acaoUsuario in [1, 2, 3, 4]:
-                if acaoUsuario == 1:
-                    novoId = listaLivrosAutoIncrementId()
-                    cadastrarLivro(novoId)
-                    break
-                elif acaoUsuario == 2:
-                    menuConsultas()
-                    break
-                elif acaoUsuario == 3:
-                    while True:
-                        idInformado = int(
-                            input('\nInforme o id do livro que deseja remover\n'))
-                        result = removerLivroById(idInformado)
-                        if result["error"]:
-                            print(result["message"])
-                            print('''
-\n   
---------------
-Menu de opções
---------------
-    
-1 - Remover outro livro
-2 - Retornar ao menu principal
-\n
-    ''')
-                            while True:
-                                try:
-                                    acaoUsuario = int(
-                                        input('\nQual opção você deseja? (1, 2)\n'))
-                                    if acaoUsuario in [1, 2]:
-                                        if acaoUsuario == 1:
-                                            break
-                                        else:
-                                            limparConsole()
-                                            initMenu()
-                                            break
-                                    else:
-                                        print('\nOpção inválida\n')
-                                except ValueError:
-                                    print(
-                                        'Por favor, informe um valor númerico válido para a opção')
-                        else:
-                            print(result["message"])
-                            print('''
-\n   
---------------
-Menu de opções
---------------
-    
-1 - Remover outro livro
-2 - Retornar ao menu principal
-\n
-    ''')
-                            while True:
-                                try:
-                                    acaoUsuario = int(
-                                        input('\nQual opção você deseja? (1, 2)\n'))
-                                    if acaoUsuario in [1, 2]:
-                                        if acaoUsuario == 1:
-                                            break
-                                        else:
-                                            limparConsole()
-                                            initMenu()
-                                            break
-                                    else:
-                                        print('\nOpção inválida\n')
-                                except ValueError:
-                                    print(
-                                        'Por favor, informe um valor númerico válido para a opção')
-                            break
-                elif acaoUsuario == 4:
-                    print('Encerrando aplicação...')
-                    timer.start()
-                    timer.join()
-                    encerrarApp()
-            else:
-                print('\nPor favor, escolha uma opção disponível\n')
-        except ValueError:
-            print('Por favor, informe um valor númerico válido para a opção')
+    print("\n1. Cadastrar Livro \n2. Consultar Livro \n3. Remover Livro \n4. Encerrar Programa:\n")
+    opcao = input("Digite a opção desejada: ")
+    if opcao == '1':
+        id_global += 1
+        cadastrar_livro(id_global)
+    elif opcao == '2':
+        consultar_livro()
+    elif opcao == '3':
+        remover_livro()
+    elif opcao == '4':
+        limpa_console()
+        print("Programa encerrado.")
+        exit()        
+    else:
+        limpa_console()
+        print("\nOpção inválida, tente novamente\n\n")
